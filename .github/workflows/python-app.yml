@@ -1,1 +1,15 @@
+image: python:3.9
 
+stages:
+  - build
+  - test
+
+job_practica:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pip install pylint pytest pytest-cov
+    
+    - pylint main.py test.py transform.py --exit-zero
+    
+    - pytest --cov=. test.py
